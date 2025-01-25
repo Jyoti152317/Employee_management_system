@@ -6,7 +6,8 @@ const Employee = () => {
     const [employee, setEmployee] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [showForm, setShow]=useState(false)
+    const [show, setShow] = useState(false);
+    const [newEmpLoyee, setNewEmployee]=useState("")
 
     
 
@@ -33,6 +34,13 @@ const Employee = () => {
         
     }
 
+    const handleForm = (newEmpLoyee) => {
+        setEmployee({...employee, newEmpLoyee})
+    }
+    const showForm = () => {
+        setShow(!show);
+    }
+
     if (isLoading) {
         return<p>Loding...</p>
     }
@@ -45,7 +53,8 @@ const Employee = () => {
             <h2>Employee Management Dashboard</h2>
             
             <div><button style={{ background: "royalblue" }} onClick={showForm}>Add Employee</button>
-            <AddEmployee/></div>
+                {show && <AddEmployee onAdd={handleForm} />}
+            </div>
             <table>
                 <thaed>
                 <tr>
